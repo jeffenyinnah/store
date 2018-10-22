@@ -1,20 +1,20 @@
 <ion-view view-title="Store">
   <ion-content>
   	<div class="col-lg-12">
-  		<h2>Shoe Brands</h2>
+  		<h2>Boots</h2>
   	</div>
   	
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+      <ion-item ng-repeat="boot in boots" ui-sref="app.login">
         <div class="card">
 			 <div class="item item-avatar">
-			    <img ng-src="{{playlist.img}}">
-			    <h2>{{playlist.title}}<h2>
+			    <img ng-src="{{boot.img}}">
+			    <h2>{{boot.title}}<h2>
 			    <p>{{playlist.obj}}</p>
 			 </div>
 
 			  <div class="item item-image">
-			    <img ng-src="{{playlist.img}}">
+			    <img ng-src="{{boot.img}}">
 			    
 			  </div>
 			  <div class="item item-divider">

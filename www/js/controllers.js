@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -31,8 +31,8 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
+    /*onsole.log('Doing login', $scope.loginData);*/
+    $scope.loginData = "";
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -43,14 +43,32 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+    { title: 'Boots', img: 'img/boots/boot1.jpg', id: 1, obj: 'Men Sneakers High Tech Damping Flyknit ' },
+    { title: 'Casual Footwears', img: 'img/casual/casual1.jpg', id: 2, obj: 'Men Casual Shoes'},
+    { title: 'Jordan', img: 'img/jordan/jordan1.png', id: 3, obj: 'The Jordan Retro 10' }
   ];
 })
-
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+
+  
+})
+
+.controller('HomeCtrl', function($scope) {
+  $scope.brands = [
+    {title: 'Boots',  img: 'img/boots/boot1.jpg'},
+    {title: 'Casual',  img: 'img/casual/casual1.jpg'},
+    {title: 'Jordan',  img: 'img/jordan/jordan1.png'},
+    {title: 'Formal',  img: 'img/formal/formal1.jpg'}
+  ]
+  
+})
+
+.controller('BootsCtrl', function($scope) {
+  $scope.boots = [
+    {title: 'Classy Boots',  img: 'img/boots/boot1.jpg'},
+    {title: 'Chelsea Boots',  img: 'img/boots/boot2.jpg'},
+    {title: 'Grey Color boots',  img: 'img/boots/boot3.jpg'},
+    {title: 'Big boy leather',  img: 'img/boots/boot4.jpg'}
+  ]
+  
 });

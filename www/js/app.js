@@ -71,7 +71,54 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+
+  .state('app.home', {
+      url: '/home',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/home.html',
+          controller: 'HomeCtrl'
+        }
+      }
+    })
+
+  .state('app.boots', {
+      url: '/boots',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/boots.html',
+          controller: 'BootsCtrl'
+        }
+      }
+    })
+
+  .state('app.casual', {
+      url: '/casual',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/casual.html'
+        }
+      }
+    })
+
+  .state('app.jordan', {
+      url: '/jordan',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/jordan.html'
+        }
+      }
+    })
+
+  .state('app.formal', {
+      url: '/formal',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/formal.html'
+        }
+      }
+    });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/home');
 });
