@@ -97,7 +97,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/casual',
       views: {
         'menuContent': {
-          templateUrl: 'templates/casual.html'
+          templateUrl: 'templates/casual.html',
+          controller: 'CasualCtrl'
         }
       }
     })
@@ -106,7 +107,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/jordan',
       views: {
         'menuContent': {
-          templateUrl: 'templates/jordan.html'
+          templateUrl: 'templates/jordan.html',
+          controller: 'JordanCtrl'
         }
       }
     })
@@ -115,7 +117,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/formal',
       views: {
         'menuContent': {
-          templateUrl: 'templates/formal.html'
+          templateUrl: 'templates/formal.html',
+          controller: 'FormalCtrl'
+        }
+      }
+    })
+
+  .state('app.order', {
+      url: '/order',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/order.html',
         }
       }
     });

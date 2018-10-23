@@ -33,6 +33,7 @@ angular.module('starter.controllers', [])
   $scope.doLogin = function() {
     /*onsole.log('Doing login', $scope.loginData);*/
     $scope.loginData = "";
+    $state.go('app.order');
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -42,11 +43,11 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
+ /* $scope.playlists = [
     { title: 'Boots', img: 'img/boots/boot1.jpg', id: 1, obj: 'Men Sneakers High Tech Damping Flyknit ' },
     { title: 'Casual Footwears', img: 'img/casual/casual1.jpg', id: 2, obj: 'Men Casual Shoes'},
     { title: 'Jordan', img: 'img/jordan/jordan1.png', id: 3, obj: 'The Jordan Retro 10' }
-  ];
+  ];*/
 })
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 
@@ -69,6 +70,35 @@ angular.module('starter.controllers', [])
     {title: 'Chelsea Boots',  img: 'img/boots/boot2.jpg'},
     {title: 'Grey Color boots',  img: 'img/boots/boot3.jpg'},
     {title: 'Big boy leather',  img: 'img/boots/boot4.jpg'}
+  ]
+  
+})
+.controller('CasualCtrl', function($scope) {
+  $scope.casuals = [
+    {title: 'Classy Boots',  img: 'img/casual/casual1.jpg'},
+    {title: 'Chelsea Boots',  img: 'img/casual/casual2.jpg'},
+    {title: 'Grey Color boots',  img: 'img/casual/casual3.jpg'},
+    {title: 'Big boy leather',  img: 'img/casual/casual4.jpg'}
+  ]
+  
+})
+
+.controller('JordanCtrl', function($scope) {
+  $scope.jordans = [
+    {title: 'Classy Boots',  img: 'img/jordan/jordan1.png'},
+    {title: 'Chelsea Boots',  img: 'img/jordan/jordan2.png'},
+    {title: 'Grey Color boots',  img: 'img/jordan/jordan3.png'},
+    {title: 'Big boy leather',  img: 'img/jordan/jordan4.png'}
+  ]
+  
+})
+
+.controller('FormalCtrl', function($scope) {
+  $scope.formals = [
+    {title: 'Classy Boots',  img: 'img/formal/formal1.jpg'},
+    {title: 'Chelsea Boots',  img: 'img/formal/formal2.jpg'},
+    {title: 'Grey Color boots',  img: 'img/formal/formal3.jpg'},
+    {title: 'Big boy leather',  img: 'img/formal/formal4.jpg'}
   ]
   
 });

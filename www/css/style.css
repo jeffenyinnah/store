@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
-img{
-	width: 50px;
+.img-resp {
+	align-content: center;
+}
+.background.scroll-content {
+    background: url('../img/jordan3.png') no-repeat;
+    background-size: cover;
 }

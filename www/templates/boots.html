@@ -1,16 +1,16 @@
-<ion-view view-title="Store">
-  <ion-content>
+<ion-view view-title="Boots">
+  <ion-content class="padding">
   	<div class="col-lg-12">
-  		<h2>Boots</h2>
+  		<h2>Elegant Boots</h2>
   	</div>
   	
     <ion-list>
-      <ion-item ng-repeat="boot in boots" ui-sref="app.login">
+      <ion-item ng-repeat="boot in boots" ng-click="login()">
         <div class="card">
 			 <div class="item item-avatar">
 			    <img ng-src="{{boot.img}}">
 			    <h2>{{boot.title}}<h2>
-			    <p>{{playlist.obj}}</p>
+			    <p></p>
 			 </div>
 
 			  <div class="item item-image">
@@ -29,3 +29,4 @@
     </ion-list>
   </ion-content>
 </ion-view>
+

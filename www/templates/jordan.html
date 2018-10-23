@@ -1,20 +1,20 @@
-<ion-view view-title="Store">
+<ion-view view-title="Jordans">
   <ion-content>
   	<div class="col-lg-12">
-  		<h2>Jordan</h2>
+  		<h2>Jordan Retro 10 and Footlockers</h2>
   	</div>
   	
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/login">
+      <ion-item ng-repeat="jordan in jordans" ng-click="login()"
         <div class="card">
 			 <div class="item item-avatar">
-			    <img ng-src="{{playlist.img}}">
-			    <h2>{{playlist.title}}<h2>
-			    <p>{{playlist.obj}}</p>
+			    <img ng-src="{{jordan.img}}">
+			    <h2>{{jordan.title}}<h2>
+			    <p></p>
 			 </div>
 
 			  <div class="item item-image">
-			    <img ng-src="{{playlist.img}}">
+			    <img ng-src="{{jordan.img}}">
 			    
 			  </div>
 			  <div class="item item-divider">
