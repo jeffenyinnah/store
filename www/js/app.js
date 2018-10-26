@@ -36,101 +36,51 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.cart', {
+    url: '/cart',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/cart.html'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.shoes', {
+      url: '/shoes',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/shoes.html'
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
-  })
-
-  .state('app.home', {
-      url: '/home',
+    .state('app.shop', {
+      url: '/shop',
       views: {
         'menuContent': {
-          templateUrl: 'templates/home.html',
-          controller: 'HomeCtrl'
+          templateUrl: 'templates/shop.html'
         }
       }
     })
 
-  .state('app.boots', {
-      url: '/boots',
+    .state('app.bags', {
+      url: '/bags',
       views: {
         'menuContent': {
-          templateUrl: 'templates/boots.html',
-          controller: 'BootsCtrl'
+          templateUrl: 'templates/bags.html'
         }
       }
     })
 
-  .state('app.casual', {
-      url: '/casual',
+    .state('app.clothes', {
+      url: '/clothes',
       views: {
         'menuContent': {
-          templateUrl: 'templates/casual.html',
-          controller: 'CasualCtrl'
+          templateUrl: 'templates/clothes.html'
         }
       }
     })
 
-  .state('app.jordan', {
-      url: '/jordan',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/jordan.html',
-          controller: 'JordanCtrl'
-        }
-      }
-    })
-
-  .state('app.formal', {
-      url: '/formal',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/formal.html',
-          controller: 'FormalCtrl'
-        }
-      }
-    })
-
-  .state('app.order', {
-      url: '/order',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/order.html',
-        }
-      }
-    });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/shop');
 });

@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+ angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,95 +10,168 @@ angular.module('starter.controllers', [])
   //});
 
   // Form data for the login modal
-  $scope.loginData = {};
+ 
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+  // $ionicModal.fromTemplateUrl('templates/login.html', {
+  //   scope: $scope
+  // }).then(function(modal) {
+  //   $scope.modal = modal;
+  // });
 
   // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
+  // $scope.closeLogin = function() {
+  //   $scope.modal.hide();
+  // };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
+  // // Open the login modal
+  // $scope.login = function() {
+  //   $scope.modal.show();
+  // };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    /*onsole.log('Doing login', $scope.loginData);*/
-    $scope.loginData = "";
-    $state.go('app.order');
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
+  // // Perform the login action when the user submits the login form
+  // $scope.doLogin = function() {
+  //   console.log('Doing login', $scope.loginData);
+
+  //   // Simulate a login delay. Remove this and replace with your login
+  //   // code if using a login system
+  //   $timeout(function() {
+  //     $scope.closeLogin();
+  //   }, 1000);
+  // };
 })
 
 .controller('PlaylistsCtrl', function($scope) {
- /* $scope.playlists = [
-    { title: 'Boots', img: 'img/boots/boot1.jpg', id: 1, obj: 'Men Sneakers High Tech Damping Flyknit ' },
-    { title: 'Casual Footwears', img: 'img/casual/casual1.jpg', id: 2, obj: 'Men Casual Shoes'},
-    { title: 'Jordan', img: 'img/jordan/jordan1.png', id: 3, obj: 'The Jordan Retro 10' }
-  ];*/
+  $scope.playlists = [
+    { title: 'Reggae', id: 1 },
+    { title: 'Chill', id: 2 },
+    { title: 'Dubstep', id: 3 },
+    { title: 'Indie', id: 4 },
+    { title: 'Rap', id: 5 },
+    { title: 'Cowbell', id: 6 }
+  ];
 })
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-
-  
 })
 
-.controller('HomeCtrl', function($scope) {
-  $scope.brands = [
-    {title: 'Boots',  img: 'img/boots/boot1.jpg'},
-    {title: 'Casual',  img: 'img/casual/casual1.jpg'},
-    {title: 'Jordan',  img: 'img/jordan/jordan1.png'},
-    {title: 'Formal',  img: 'img/formal/formal1.jpg'}
-  ]
-  
+
+.value('cartStorage', {
+    items: []
 })
 
-.controller('BootsCtrl', function($scope) {
-  $scope.boots = [
-    {title: 'Classy Boots',  img: 'img/boots/boot1.jpg'},
-    {title: 'Chelsea Boots',  img: 'img/boots/boot2.jpg'},
-    {title: 'Grey Color boots',  img: 'img/boots/boot3.jpg'},
-    {title: 'Big boy leather',  img: 'img/boots/boot4.jpg'}
-  ]
-  
-})
-.controller('CasualCtrl', function($scope) {
-  $scope.casuals = [
-    {title: 'Classy Boots',  img: 'img/casual/casual1.jpg'},
-    {title: 'Chelsea Boots',  img: 'img/casual/casual2.jpg'},
-    {title: 'Grey Color boots',  img: 'img/casual/casual3.jpg'},
-    {title: 'Big boy leather',  img: 'img/casual/casual4.jpg'}
-  ]
-  
+
+.controller('mainController', function(cartStorage) {
+    var _this = this;
+    _this.cartStorage = cartStorage;
+
+    _this.items = [{
+        name: 'All to all Boot',
+        price: 500,
+        img: "../img/boots/boot1.jpg",
+        select: {i1 : "small", i2 : "medium", i3: "Large"},
+        quantity: 0,
+        total: 0,
+        showAddToCart: false,
+        addedToCart: false
+    }, {
+        name: 'Formal Shoe',
+        price: 400,
+        img: "../img/formal/formal1.jpg",
+        select: {i1 : "small", i2 : "medium", i3: "Large"},
+        quantity: 0,
+        total: 0,
+        showAddToCart: false,
+        addedToCart: false
+    }, {
+        name: 'Jordans',
+        price: 2500,
+        img: "../img/jordan/jordan1.png",
+        select: {i1 : "small", i2 : "medium", i3: "Large"},
+        quantity: 0,
+        total: 0,
+        showAddToCart: false,
+        addedToCart: false
+    }];
+    
+    _this.addToCart = function(item) {
+        _this.cartStorage.items.push(item);
+        item.addedToCart = true;
+    }
+
+    _this.increaseItemAmount = function(item) {
+        item.quantity++;
+        item.total = item.quantity * item.price;
+        item.showAddToCart = true;
+    }
+
+    _this.decreaseItemAmount = function(item) {
+        item.quantity--;
+        item.total = item.total - item.price;
+        if (item.quantity <= 0) {
+            item.quantity = 0;
+            item.addedToCart = false;
+            item.showAddToCart = false;
+            var itemIndex = _this.cartStorage.items.indexOf(item);
+            if (itemIndex > -1) {
+                _this.cartStorage.items.splice(itemIndex, 1);
+
+            }
+        } else {
+            item.showAddToCart = true;
+        }
+    }
 })
 
-.controller('JordanCtrl', function($scope) {
-  $scope.jordans = [
-    {title: 'Classy Boots',  img: 'img/jordan/jordan1.png'},
-    {title: 'Chelsea Boots',  img: 'img/jordan/jordan2.png'},
-    {title: 'Grey Color boots',  img: 'img/jordan/jordan3.png'},
-    {title: 'Big boy leather',  img: 'img/jordan/jordan4.png'}
-  ]
-  
+
+
+.controller('cartController', function(cartStorage, $scope) {
+    var _this = this;
+    _this.cartStorage = cartStorage;
+
+    _this.increaseItemAmount = function(item, total) {
+        item.quantity++;
+
+        item.total = item.quantity * item.price;
+    }
+
+    _this.decreaseItemAmount = function(item) {
+        item.quantity--;
+        item.total = item.total - item.price;
+        if (item.quantity <= 0) {
+            item.quantity = 0;
+            item.addedToCart = false;
+            item.showAddToCart = false;
+            var itemIndex = _this.cartStorage.items.indexOf(item);
+            if (itemIndex > -1) {
+                _this.cartStorage.items.splice(itemIndex, 1);
+                 
+            }
+        }
+
+
+    }
+
+    _this.removeFromCart = function(item) {
+        item.quantity = 0;
+        item.addedToCart = false;
+        item.showAddToCart = false;
+        var itemIndex = _this.cartStorage.items.indexOf(item);
+        if (itemIndex > -1) {
+            _this.cartStorage.items.splice(itemIndex, 1);
+        }
+    }
+
+    _this.grandTotal = function(item) {
+
+        var sum = 0;
+
+        sum += item.total;
+
+        return sum;
+    }
+    
+
+    
 })
 
-.controller('FormalCtrl', function($scope) {
-  $scope.formals = [
-    {title: 'Classy Boots',  img: 'img/formal/formal1.jpg'},
-    {title: 'Chelsea Boots',  img: 'img/formal/formal2.jpg'},
-    {title: 'Grey Color boots',  img: 'img/formal/formal3.jpg'},
-    {title: 'Big boy leather',  img: 'img/formal/formal4.jpg'}
-  ]
-  
-});
