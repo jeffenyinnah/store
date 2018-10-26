@@ -57,13 +57,15 @@
 
 
 .value('cartStorage', {
-    items: []
+    items: [],
+    grandTotal:0
 })
 
 
 .controller('mainController', function(cartStorage) {
     var _this = this;
     _this.cartStorage = cartStorage;
+
 
     _this.items = [{
         name: 'All to all Boot',
@@ -102,12 +104,16 @@
     _this.increaseItemAmount = function(item) {
         item.quantity++;
         item.total = item.quantity * item.price;
+        _this.cartStorage.grandTotal += item.price;
+        console.log(_this.cartStorage.grandTotal );
         item.showAddToCart = true;
     }
-
+    // $scope.grandTotal;
     _this.decreaseItemAmount = function(item) {
         item.quantity--;
         item.total = item.total - item.price;
+        _this.cartStorage.grandTotal -= item.price;
+        console.log(_this.cartStorage.grandTotal);
         if (item.quantity <= 0) {
             item.quantity = 0;
             item.addedToCart = false;
@@ -128,16 +134,22 @@
 .controller('cartController', function(cartStorage, $scope) {
     var _this = this;
     _this.cartStorage = cartStorage;
+    $scope.grandTotal = _this.cartStorage.grandTotal;
+    console.log($scope.grandTotal);
 
     _this.increaseItemAmount = function(item, total) {
         item.quantity++;
 
         item.total = item.quantity * item.price;
+         $scope.grandTotal+=item.price;
+         console.log($scope.grandTotal);
     }
 
     _this.decreaseItemAmount = function(item) {
         item.quantity--;
         item.total = item.total - item.price;
+        $scope.grandTotal-=item.price;
+        console.log($scope.grandTotal);
         if (item.quantity <= 0) {
             item.quantity = 0;
             item.addedToCart = false;
@@ -160,18 +172,6 @@
         if (itemIndex > -1) {
             _this.cartStorage.items.splice(itemIndex, 1);
         }
-    }
-
-    _this.grandTotal = function(item) {
-
-        var sum = 0;
-
-        sum += item.total;
-
-        return sum;
-    }
-    
-
-    
+    }  
 })
 
